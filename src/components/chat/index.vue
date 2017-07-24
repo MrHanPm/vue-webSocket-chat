@@ -1,7 +1,7 @@
 <template>
 	<transition enter-active-class="animated slideInRight">
 		<section class="chat">
-			<a href="/#/chat/setting" class="iconfont setting-btn">&#xe600;</a>
+			<router-link to="/chat/setting" class="iconfont setting-btn">&#xe600;</router-link>
 			<router-view></router-view>
 			<el-tip :show.sync="show">请填写内容</el-tip>
 			<el-confirm-cancel :show.sync="confirmShow" @confirm="delConfirm">确定清空信息吗？</el-confirm-cancel>
@@ -24,7 +24,7 @@
 								</div>
 								<div class="name">
 									<span class="username">{{ item.name }}</span>
-									<span class="locality">{{ !item.locality.ret || item.locality.ret == -1 ? '未知地区' : `${item.locality.province}省${item.locality.city}市`}}</span>
+									<span class="locality">{{ !item.locality.ret || item.locality.ret == -1 ? '' : `${item.locality.province}省`}}</span>
 								</div>
 								<div class="msg-user">
 									<img :src="item.avatar">

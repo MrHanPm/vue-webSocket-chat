@@ -1,6 +1,6 @@
 <template>
 	<div class="ui-head">
-		<a href="/#/chat" class="iconfont">&#xe645;</a>
+        <router-link to="/chat" class="iconfont">&#xe645;</router-link>
 		<h2>
 			<slot></slot>
 		</h2>

@@ -9,7 +9,6 @@ var store = new Vuex.Store({
 		reconnecting: false, // 是否正在重新连接服务器
 		self: {},		// 存放登录信息
 		users: [],		// 存放所有在线用户
-		title: document.title,	// 保存站点标题
 		message: [		// 所有聊天信息
 						/**
 						 *   type 类型有：
@@ -26,7 +25,7 @@ var store = new Vuex.Store({
 				type: 'msg',
 				name: 'Vue',
 				avatar: '/static/images/avatar/vue.svg',
-				content: '大家好, 我是Vue, 介绍我的朋友VueRouter、Vuex、WebSocket、Sass、Webpack、Animate.css、Node.js、Express、ES6.',
+				content: '我是今天的主角.',
 				time: Date.now(),
 				msgId: 0,
 				locality: {},
@@ -39,6 +38,16 @@ var store = new Vuex.Store({
 				content: '我来凑个热闹',
 				time: Date.now(),
 				msgId: 1,
+				locality: {},
+			},
+			{
+				uid: 2,
+				type: 'msg',
+				name: 'Webpack',
+				avatar: '/static/images/avatar/webpack.svg',
+				content: 'haha',
+				time: Date.now(),
+				msgId: 2,
 				locality: {},
 			},
 		],

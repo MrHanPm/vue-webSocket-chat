@@ -1,5 +1,5 @@
 <template>
-	<transition enter-active-class="animated slideInRight">
+	<transition enter-active-class="animated slideInRight" leave-active-class="animated fadeOut">
 		<div class="setting" @touchmove.prevent>
 			<el-confirm-cancel :show.sync="show" @confirm="confirm">确定退出吗？</el-confirm-cancel>
 			

@@ -12,7 +12,7 @@ io.on('connection', socket => {
 	axios.get(`${ipApi}${socket.ip}`)
 	.then(responseData => {
 		var data = responseData.data;
-		fs.appendFile(__dirname + '/logs.txt', `${Date.now()}----${JSON.stringify(data, null, 4)}\n`, err => {
+		fs.appendFile(__dirname + '/logs.txt', `${Date.now()}----${socket.ip}----${JSON.stringify(data, null, 4)}\n`, err => {
 			if( err ) throw err;
 		});
 		if( data != -3 && data.ret != -1 ) return socket.locality = data;

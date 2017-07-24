@@ -16,7 +16,7 @@
 				<div class="login-input">
 					<input 
 						type="text" 
-						placeholder="password"
+						placeholder="Password"
 						maxlength="30"
 						autocomplete="off"
 						v-model.trim="password"
