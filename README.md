@@ -11,6 +11,10 @@
 
 ![二维码](https://raw.githubusercontent.com/xjh22222228/Vue-WebSocket-Chat/master/static/images/preview_qrcode.png)
 
+![二维码](https://raw.githubusercontent.com/xjh22222228/Vue-WebSocket-Chat/master/static/images/preview02.png)
+
+![二维码](https://raw.githubusercontent.com/xjh22222228/Vue-WebSocket-Chat/master/static/images/preview01.png)
+
 ## 技术栈
 ```
 Vue2.0			 # https://cn.vuejs.org/v2/guide/
