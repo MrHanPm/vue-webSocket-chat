@@ -2,27 +2,43 @@ var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var axios = require('axios');
-var fs = require('fs');
+var mongoose = require('./db/config.js')
+
+// IP归属地查询， 免费的真心不好用。 API设计的真是奇葩
 var ipApi = 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=';
 var message = [];
 var users   = [];
 var msgId 	= 99999;
+
+var Schema = mongoose.Schema;
+var loginSchema = new Schema({
+	time: Number,
+	ip: String,
+	locality: Object,
+	user: Object,
+})
+
+var Login = mongoose.model('users', loginSchema)
+
+
 io.on('connection', socket => {
-	socket.ip = socket.handshake.address.match(/\d+\.\d+\.\d+\.\d+/)[0];
-	axios.get(`${ipApi}${socket.ip}`)
-	.then(responseData => {
-		var data = responseData.data;
-		fs.appendFile(__dirname + '/logs.txt', `${Date.now()}----${socket.ip}----${JSON.stringify(data, null, 4)}\n`, err => {
-			if( err ) throw err;
+	socket.ip = socket.handshake.address.match(/\d+\.\d+\.\d+\.\d+/);
+	if( socket.ip )
+	{
+		axios.get(`${ipApi}${socket.ip}`)
+		.then(responseData => {
+			var data = responseData.data;
+			if( data != -3 && data.ret != -1 ) return socket.locality = data;
+			socket.locality = {};
+		})
+		.catch(err => {
+			socket.locality = {};
 		});
-		if( data != -3 && data.ret != -1 ) return socket.locality = data;
-		socket.locality = {};
-	})
-	.catch(err => {
-		socket.locality = {};
-		console.log(`获取地区异常${err}`);
-	});
+	}
+
+	// 监听用户登录
 	socket.on('login', data => {
+		console.log('login');
 		var userObj = Object.assign(data, {sign: socket.id, type: 'online'});
 		users.push(userObj);
 		io.sockets.emit('login', {
@@ -30,6 +46,15 @@ io.on('connection', socket => {
 				users, 
 				online: userObj,
 			}
+		});
+		var saveLogin = new Login({
+			time: Date.now(),
+			ip: socket.ip,
+			user: userObj,
+			locality: socket.locality,
+		}).save(err => {
+			if( err ) return console.log(`保存错误:${err}`);
+			console.log('保存成功');
 		});
 	})
 

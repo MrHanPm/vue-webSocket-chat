@@ -20,7 +20,7 @@
 Vue2.0			 # https://cn.vuejs.org/v2/guide/
 Vuex		     # 组件之间通信非常方便
 VueRouter	     # Vue 路由
-socket.io        # WebSocket 框架 确实好用
+Socket.io        # WebSocket 框架 确实好用
 Sass			 # CSS预处理器 易维护， 效率高 推荐
 Animat.css       # 定义了很多动画，很炫酷有木有
 Node.js			 # 使用Node.js作为后端
