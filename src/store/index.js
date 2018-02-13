@@ -20,36 +20,6 @@ var store = new Vuex.Store({
 						 *   reconnect = 重连成功
 						 *   reconnecting = 正在重连
 						 */
-			{
-				uid: 0,
-				type: 'msg',
-				name: 'Vue',
-				avatar: '/static/images/avatar/vue.svg',
-				content: '我是今天的主角.',
-				time: Date.now(),
-				msgId: 0,
-				locality: {},
-			},
-			{
-				uid: 1,
-				type: 'msg',
-				name: 'jQuery',
-				avatar: '/static/images/avatar/jquery.svg',
-				content: '我来凑个热闹',
-				time: Date.now(),
-				msgId: 1,
-				locality: {},
-			},
-			{
-				uid: 2,
-				type: 'msg',
-				name: 'Webpack',
-				avatar: '/static/images/avatar/webpack.svg',
-				content: 'haha',
-				time: Date.now(),
-				msgId: 2,
-				locality: {},
-			},
 		],
 	},
 	mutations: {

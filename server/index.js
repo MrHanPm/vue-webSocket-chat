@@ -2,24 +2,11 @@ var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var axios = require('axios');
-var mongoose = require('./db/config.js')
 
-// IP归属地查询， 免费的真心不好用。 API设计的真是奇葩
 var ipApi = 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=';
 var message = [];
 var users   = [];
 var msgId 	= 99999;
-
-var Schema = mongoose.Schema;
-var loginSchema = new Schema({
-	time: Number,
-	ip: String,
-	locality: Object,
-	user: Object,
-})
-
-var Login = mongoose.model('users', loginSchema)
-
 
 io.on('connection', socket => {
 	socket.ip = socket.handshake.address.match(/\d+\.\d+\.\d+\.\d+/);
